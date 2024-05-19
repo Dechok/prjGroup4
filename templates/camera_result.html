@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera Capture Result</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/result.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="/index">
+      <img src="/static/image/image01.png" alt="" />
+    </a>
+  </div>
+  <nav class="nav">
+    <ul class="menu1">
+      <li class="li1"><a href="/index">Home</a></li>
+      <li class="li2"><a href="/about">About Us</a></li>
+      <li class="li3"><a href="/treatment">Treatment</a></li>
+    </ul>
+  </nav>
+  <button id="toggleNavbar" class="navbar-toggle">☰</button>
+
+  <nav class="navbar" id="navbar">
+    <button id="closeNavbar" class="close-icon">×</button>
+    <ul class="menu">
+      <li><a href="/index">Home</a></li>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/treatment">Treatment</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="card-group">
+  <div class="card">
+    <div class="collections container border rounded shadow">
+      <div class="content">
+        <div class='green-con'>
+          <h2>Classification Result</h2>
+          <div id="prediction-result">
+        
+
+            <br>
+            <img src="data:image/png;base64,{{ image_path }}" alt="Captured Image" style="width: 340px; height: 270px;">
+
+            <br>
+            <p>SVM has predicted: {{ predicted_class_svm1 }}</p>
+            <p>CNN has predicted: {{ predicted_class_cnn1 }}</p>
+            <!-- Buttons -->
+            <div style="margin-top: 20px;">
+              <button onclick="window.location.href='/'">Back</button>
+              {% if predicted_class_svm1 in ['Potato_EarlyBlight'] %}
+                  <button onclick="window.location.href='/treatment/earlyblight'">Treatment</button>
+              {% elif predicted_class_svm1 in ['Potato_LateBlight'] %}
+                  <button onclick="window.location.href='/treatment/lateblight'">Treatment</button>
+              {% endif %}
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-container container"></div>
+  <div class="f-design">
+    <div class="f-design-txt container">
+      <p>2024 AgriTech All Right Reserved</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/static/js/script.js"></script>
+</body>
+</html>
